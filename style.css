@@ -1,0 +1,302 @@
+/* ==========================================================
+   Haunted Houses – responsive Halloween poem page
+   Fonts: Cinzel (headings) + Lora (body/poem), via Google Fonts
+   ========================================================== */
+
+:root {
+  --bg-panel: #1a1a2e;
+  --ink: #f2eee6;
+  --ink-soft: #c9c4d6;
+  --ember: #ff8a2b;      /* pumpkin glow, pulled from the hero image */
+  --ember-dim: #c4601a;
+  --moon: #dbe7f5;       /* cool moonlight accent */
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 2rem 1rem;
+
+  /* Responsive full-screen background image */
+  background-color: #0d0d14;
+  background-image: url("images/smoky-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  font-family: 'Lora', serif;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Container ---------- */
+.container {
+  background-color: var(--bg-panel);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid rgba(255, 138, 43, 0.25);
+  border-radius: 6px;
+  box-shadow: 0 0 0 6px rgba(26, 26, 46, 0.55),
+              0 25px 80px rgba(0, 0, 0, 0.75);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  line-height: 0;
+}
+
+.hero-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: cover;
+  object-position: 60% 40%;     /* keeps the mansion + moon in frame */
+}
+
+.hero-fade {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 35%;
+  background: linear-gradient(to bottom, rgba(26, 26, 46, 0), var(--bg-panel));
+  pointer-events: none;
+}
+
+/* ---------- Title block ---------- */
+.title-block {
+  text-align: center;
+  padding: 0.5rem 1rem 2rem;
+  margin-top: -2.5rem;
+  position: relative;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+
+h1 {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: clamp(2.5rem, 8vw, 5.25rem);
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-shadow: 0 0 18px rgba(255, 138, 43, 0.55),
+               0 0 48px rgba(255, 138, 43, 0.25),
+               0 3px 0 rgba(0, 0, 0, 0.6);
+}
+
+h2 {
+  margin: 0.75rem 0 0;
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.05rem, 3vw, 1.5rem);
+  color: var(--ink-soft);
+}
+
+.ornament {
+  margin: 1.25rem 0 1.25rem;
+  font-size: 1rem;
+  letter-spacing: 0.6em;
+  color: var(--ember-dim);
+}
+
+.bio-link {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ember);
+  border: 1px solid var(--ember-dim);
+  border-radius: 2px;
+  transition: background-color 0.25s, color 0.25s, box-shadow 0.25s;
+}
+
+.bio-link:hover,
+.bio-link:focus-visible {
+  background-color: var(--ember);
+  color: #1a1a2e;
+  box-shadow: 0 0 22px rgba(255, 138, 43, 0.55);
+  outline: none;
+}
+
+/* ---------- Poem ---------- */
+.poem-body {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 1rem 1rem 3rem;
+  text-align: left;
+}
+
+.stanza {
+  position: relative;
+  margin: 0 0 2.25rem;
+  font-size: clamp(1.15rem, 2.6vw, 1.4rem);
+  line-height: 1.85;
+  color: var(--ink);
+}
+
+.line { display: block; padding-left: 1.5em; text-indent: -1.5em; } /* hanging wrap */
+
+/* Subtle ember divider between stanzas */
+.stanza + .stanza::before {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 1px;
+  margin: 0 auto 2.25rem;
+  background: linear-gradient(to right, transparent, var(--ember-dim), transparent);
+}
+
+/* Drop-cap flourish on the opening line */
+.stanza:first-child .line:first-child::first-letter {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 1.6em;
+  color: var(--ember);
+  text-shadow: 0 0 12px rgba(255, 138, 43, 0.6);
+}
+
+/* Final stanza gets a quiet moonlit tint – the "ethereal air" */
+.stanza:last-child {
+  color: var(--moon);
+  text-shadow: 0 0 20px rgba(219, 231, 245, 0.25);
+}
+
+/* ---------- Credits ---------- */
+.credits {
+  max-width: 44rem;
+  margin: 1rem auto 0;
+  padding: 2rem 1rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.credits h3 {
+  margin: 0 0 1rem;
+  font-family: 'Cinzel', serif;
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ink);
+}
+
+.credits ul { margin: 0; padding-left: 1.25rem; }
+.credits li { margin-bottom: 0.5rem; }
+.credits a { color: var(--ember); text-underline-offset: 3px; }
+.credits a:hover, .credits a:focus-visible { color: #ffb36b; }
+
+.credits .small {
+  margin: 1.5rem 0 0;
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+
+/* ---------- Accessibility ---------- */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  padding: 0.5rem 1rem;
+  background: var(--ember);
+  color: #1a1a2e;
+  font-family: 'Cinzel', serif;
+  z-index: 10;
+}
+.skip-link:focus { top: 1rem; }
+
+a:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
+
+/* ---------- Gentle candle-flicker on the title (motion-safe) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  h1 { animation: flicker 6s ease-in-out infinite; }
+
+  @keyframes flicker {
+    0%, 100% { text-shadow: 0 0 18px rgba(255,138,43,.55), 0 0 48px rgba(255,138,43,.25), 0 3px 0 rgba(0,0,0,.6); }
+    45%      { text-shadow: 0 0 24px rgba(255,138,43,.75), 0 0 64px rgba(255,138,43,.35), 0 3px 0 rgba(0,0,0,.6); }
+    50%      { text-shadow: 0 0 12px rgba(255,138,43,.40), 0 0 36px rgba(255,138,43,.18), 0 3px 0 rgba(0,0,0,.6); }
+    55%      { text-shadow: 0 0 22px rgba(255,138,43,.70), 0 0 58px rgba(255,138,43,.32), 0 3px 0 rgba(0,0,0,.6); }
+  }
+}
+
+/* ==========================================================
+   Responsive breakpoints
+   ========================================================== */
+
+/* Tablet */
+@media (max-width: 900px) {
+  body { padding: 1rem 0.75rem; font-size: 1.05rem; }
+  .title-block { margin-top: -1.75rem; }
+}
+
+/* Phone */
+@media (max-width: 600px) {
+  body {
+    padding: 0;
+    background-attachment: scroll;   /* fixed backgrounds are unreliable on mobile browsers */
+  }
+
+  .container {
+    padding: 12px;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    box-shadow: none;
+  }
+
+  .hero-img {
+    aspect-ratio: 4 / 3;            /* taller crop so the mansion stays prominent */
+    object-position: 68% 40%;
+  }
+
+  .title-block { margin-top: -1.25rem; padding-bottom: 1.5rem; }
+  .eyebrow { font-size: 0.7rem; letter-spacing: 0.25em; }
+  .ornament { letter-spacing: 0.4em; }
+
+  .poem-body { padding: 0.5rem 0.5rem 2rem; }
+  .stanza { margin-bottom: 1.75rem; line-height: 1.75; }
+  .stanza + .stanza::before { margin-bottom: 1.75rem; }
+
+  .bio-link { padding: 0.7rem 1.25rem; }   /* comfortable tap target */
+}
+
+/* Large screens */
+@media (min-width: 1400px) {
+  body { font-size: 1.2rem; padding-top: 3rem; padding-bottom: 3rem; }
+}
+
+/* Print */
+@media print {
+  body { background: #fff; color: #000; padding: 0; }
+  .container { background: #fff; box-shadow: none; border: 0; }
+  h1, h2, .stanza, .credits, .credits h3 { color: #000; text-shadow: none; animation: none; }
+  .hero-fade, .bio-link, .ornament { display: none; }
+}
